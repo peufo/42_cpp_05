@@ -22,18 +22,20 @@ class Bureaucrat
 		class GradeTooHighException: public std::exception
 		{
 			private:
-				Bureaucrat& bureaucrat;
+				std::string* msg;
 			public:
+				virtual ~GradeTooHighException() throw();
 				GradeTooHighException(Bureaucrat&);
-				const char* what() const throw();
+				virtual const char* what() const throw();
 		};
 		class GradeTooLowException: public std::exception
 		{
 			private:
-				Bureaucrat& bureaucrat;
+				std::string* msg;
 			public:
+				virtual ~GradeTooLowException() throw();
 				GradeTooLowException(Bureaucrat&);
-				const char* what() const throw();
+				virtual const char* what() const throw();
 		};
 };
 

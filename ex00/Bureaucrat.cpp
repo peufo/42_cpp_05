@@ -4,17 +4,28 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(Bureaucrat & bureaucrat): bureaucrat(bureaucrat) {}
-Bureaucrat::GradeTooLowException::GradeTooLowException(Bureaucrat &bureaucrat): bureaucrat(bureaucrat) {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(Bureaucrat & bureaucrat):
+	msg(new std::string("Bureaucrat exception: " + bureaucrat.getName() + ": Grade too high !")) {}
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return std::string("Bureaucrat exception: " + this->bureaucrat.getName() + ": Grade too high !").c_str();
+	return this->msg->data();
 }
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
+{
+	delete this->msg;
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(Bureaucrat &bureaucrat):
+	msg(new std::string("Bureaucrat exception: " + bureaucrat.getName() + ": Grade too low !")) {}
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return std::string("Bureaucrat exception: " + this->bureaucrat.getName() + ": Grade too low !").c_str();
+	return this->msg->data();
+}
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
+{
+	delete this->msg;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade): name(name), grade(grade)
