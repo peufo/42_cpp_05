@@ -17,8 +17,8 @@ class Bureaucrat
 		static const int GRADE_MIN = 150;
 		~Bureaucrat();
 		Bureaucrat(const std::string &name, int grade);
-		std::string getName();
-		int getGrade();
+		std::string getName() const;
+		int getGrade() const;
 		void increment();
 		void decrement();
 		void signForm(Form& form);

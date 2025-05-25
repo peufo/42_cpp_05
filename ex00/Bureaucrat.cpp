@@ -36,12 +36,12 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): name(name), grade(gr
 		throw Bureaucrat::GradeTooLowException(*this);
 }
 
-std::string Bureaucrat::getName()
+std::string Bureaucrat::getName() const
 {
 	return this->name;
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
 	return this->grade;
 }
