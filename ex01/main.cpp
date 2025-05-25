@@ -1,36 +1,33 @@
 #include "Bureaucrat.hpp"
-
+#include "Form.hpp"
 
 void bob()
 {
-	try
-	{
-		Bureaucrat bob("Bob", 42);
-		std::cout << bob << std::endl;
-		for(int i = 0; i < 41; i++)
-			bob.increment();
-		std::cout << bob << std::endl;
-		bob.increment();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << "\nBob jobs:" << std::endl;
+	Bureaucrat bob("Bob", 20);
+	Form formA("Solde contract", 30, 10);
+	Form formB("Bridge construction", 10, 10);
+	Form formC("Road construction", 20, 10);
+
+	bob.signForm(formA);
+	bob.signForm(formB);
+	bob.signForm(formC);
 }
 
 void alice()
 {
-	for (int i = -5; i < 155; i += 3)
+	std::cout << "\nAlice jobs:" << std::endl;
+	try
 	{
-		try
-		{
-			Bureaucrat alice("Alice", i);
-			std::cout << alice << std::endl;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+		Bureaucrat alice("Alice", 20);
+		Form formA("Basic contract", 12, 150);
+		Form formB("Mafia contract", 12, 151);
+		alice.signForm(formA); // no exectued
+		alice.signForm(formB); // no exectued
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Something is wrong with Alice jobs ! -> " << e.what() << '\n';
 	}
 }
 

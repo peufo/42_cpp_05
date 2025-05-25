@@ -60,7 +60,7 @@ int Form::getGradeRequiredToExecute() const
 
 void Form::beSigned(Bureaucrat &bureaucrat)
 {
-	if (bureaucrat.getGrade() >= this->getGradeRequiredToSign())
+	if (bureaucrat.getGrade() > this->getGradeRequiredToSign())
 		throw Form::GradeTooLowException();
 	this->isSigned = true;
 }
